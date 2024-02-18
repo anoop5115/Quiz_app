@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AnswerButton extends StatelessWidget {
-  const AnswerButton({required this.answer, this.onTap, Key? key})
+  const AnswerButton(
+      {required this.answer, this.onTap, required this.selectedQ, Key? key})
       : super(key: key);
   final String answer;
   final Function()? onTap;
+  final Function(String) selectedQ;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -13,10 +17,13 @@ class AnswerButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(5.0),
         child: ElevatedButton(
-          onPressed: onTap,
+          onPressed: () {
+            onTap?.call();
+            selectedQ(answer);
+          },
           child: Text(
             answer,
-            style: const TextStyle(fontSize: 20, color: Colors.black),
+            style: GoogleFonts.lato(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           style: ElevatedButton.styleFrom(backgroundColor: Colors.purpleAccent),
         ),

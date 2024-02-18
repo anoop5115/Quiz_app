@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/home_screen.dart';
 import 'package:flutter_application_1/quiz.dart';
+import 'package:flutter_application_1/results.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +24,19 @@ class _MyAppState extends State<MyApp> {
 
   void activeScreen() {
     setState(() {
-      currentScreen = Quiz();
+      currentScreen = Quiz(activeScreen1: activeScreen1);
+    });
+  }
+
+  void activeScreen1() {
+    setState(() {
+      currentScreen = Result(restart: restart);
+    });
+  }
+
+  void restart() {
+    setState(() {
+      currentScreen = HomeScreen(activeScreen);
     });
   }
 

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/home_screen.dart';
 import 'package:flutter_application_1/models/data/questionsfile.dart';
 
 import 'answerbutton.dart';
 
 class Quiz extends StatefulWidget {
-  const Quiz({super.key});
+  const Quiz({required this.activeScreen1, super.key});
+  final Function() activeScreen1;
 
   @override
   _QuizState createState() {
@@ -13,11 +15,19 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  final List<String> selectedAnswers = [];
   var c = 0;
   answerQuestion() {
     setState(() {
       c++;
     });
+  }
+
+  void choesAns(String ans1) {
+    selectedAnswers.add(ans1);
+    if (selectedAnswers.length == questions.length) {
+      widget.activeScreen1();
+    }
   }
 
   @override
@@ -37,6 +47,7 @@ class _QuizState extends State<Quiz> {
               return AnswerButton(
                 answer: ans,
                 onTap: answerQuestion,
+                selectedQ: choesAns,
               );
             }),
             // const SizedBox(
