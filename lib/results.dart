@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Result extends StatelessWidget {
   const Result({required this.restart, Key? key}) : super(key: key);
   final void Function() restart;
-  final List<String> selectedAnswer;
+  // final List<String> selectedAnswer;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
